@@ -1,4 +1,5 @@
 import random as r
+import os
 
 class Dealer:
     def __init__(self,):
@@ -105,6 +106,10 @@ class Deck:
     
     def give_card (self):
        return self.cards.pop(0)
+
+def clear_terminal():
+    os.system('cls')
+
         
 #Инициализация  объектов     
 print("Введите имя игрока")
@@ -134,29 +139,27 @@ while True:
         if player.points>dealer.points:
             print(f"{player.name} выиграл")
             player.win_streak+=1
-        if player.points<dealer.points:
+        elif player.points<dealer.points:
             player.win_streak=0
             print(f"{dealer.name} выиграл, его счёт равен {dealer.points}")
         else:
-            player.win_streak=0
             print("Ничья")
 
     elif player.points>21 and dealer.points>21:
         if player.points<dealer.points:
             print(f"{player.name} выиграл")
             player.win_streak+=1
-        if player.points>dealer.points:
+        elif player.points>dealer.points:
             player.win_streak=0
             print(f"{dealer.name} выиграл, его счёт равен {dealer.points}")
         else:
             print("Ничья")
-            player.win_streak=0
 
     else:
         if dealer.points>21 and player.points<=21:
             player.win_streak+=1
             print(f"{player.name} выиграл, у диллера перебор")
-        if dealer.points<=21 and player.points>21:
+        elif dealer.points<=21 and player.points>21:
             print(f"{dealer.name} выиграл, его счёт равен {dealer.points}")
             player.win_streak=0
 
@@ -170,6 +173,7 @@ while True:
             player.refresh()
             dealer.refresh()
             deck.refresh()
+            clear_terminal()
             pass
         else:break
     else:
